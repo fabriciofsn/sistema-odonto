@@ -61,6 +61,7 @@ export class Cliente {
     this.nome = nome;
     this.idade = idade;
     this.CPF = CPF;
+    this.consulta = consulta;
   }
 
   public static createCliente(props: ICliente): Cliente {
