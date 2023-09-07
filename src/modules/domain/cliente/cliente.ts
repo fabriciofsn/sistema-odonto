@@ -1,5 +1,5 @@
 import { Consulta } from "../../shared/consulta";
-import { ICliente } from "./ICliente";
+import { ICliente } from "./iCliente";
 import {
   ErrorCPFinvalido,
   ErrorTamanhoMaximoNome,
