@@ -33,3 +33,11 @@ export class ErrorCPFinvalido extends ClienteException {
     this.name = "CPFinvalido";
   }
 }
+
+export class ErrorTelefoneInvalido extends ClienteException {
+  constructor(message: string = "Telefone inválido") {
+    super(message);
+    this.message = message;
+    this.name = "TelefoneInvalido";
+  }
+}
