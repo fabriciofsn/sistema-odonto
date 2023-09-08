@@ -5,6 +5,7 @@ import { Dentista } from "../dentista/dentista";
 import { Cliente } from "./cliente";
 import { createClienteProps } from "./iCliente";
 import {
+  ErrorCPFinvalido,
   ErrorIdadeInvalida,
   ErrorTamanhoMinimoNome,
 } from "./cliente.exception";
@@ -18,6 +19,7 @@ let telefoneValido: string;
 
 let nomeInvalido: string;
 let idadeInvalida: number;
+let CPFinvalido: string;
 
 beforeAll(async () => {
   nomeValido = faker.string.alpha({ length: { min: 3, max: 5 } });
@@ -25,6 +27,7 @@ beforeAll(async () => {
   idadeValida = faker.number.int({ min: 5, max: 70 });
   idadeInvalida = faker.number.int({ min: 0, max: 0 });
   CPFvalido = faker.string.numeric({ length: { min: 11, max: 11 } });
+  CPFinvalido = faker.string.numeric({ length: { min: 0, max: 10 } });
   CPFresponsavelValido = faker.string.numeric({ length: { min: 11, max: 11 } });
   telefoneValido = faker.string.alpha({ length: { min: 11, max: 11 } });
   let dentista = Dentista.createDentista({
@@ -86,6 +89,21 @@ describe("test objeto cliente", () => {
 
     expect(() => Cliente.createCliente(clienteIdadeInvalida)).toThrowError(
       ErrorIdadeInvalida
+    );
+  });
+
+  test("não deve criar objeto cliente com CPF inválido", async () => {
+    const clienteCPFInvalido: createClienteProps = {
+      nome: nomeValido,
+      idade: idadeValida,
+      CPF: CPFinvalido,
+      CPFresponsavel: CPFresponsavelValido,
+      consulta: consultaValida,
+      telefone: telefoneValido,
+    };
+
+    expect(() => Cliente.createCliente(clienteCPFInvalido)).toThrowError(
+      ErrorCPFinvalido
     );
   });
 });
