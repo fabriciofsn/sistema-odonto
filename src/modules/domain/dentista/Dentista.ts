@@ -2,7 +2,7 @@ import { ErrorTamanhoMinimoNome } from "../cliente/cliente.exception";
 import { CFPIDinvalido } from "./dentista.exception";
 import { IDentista } from "./iDentista";
 
-export class Dentista {
+export class Dentista implements IDentista {
   private _nome: string;
   private _CFOID: string;
   private _cirurgiao: boolean;
@@ -35,14 +35,14 @@ export class Dentista {
     this._CFOID = value;
   }
 
-  private constructor(nome: string, CFOID: string, cirurgiao: boolean) {
-    this.nome = nome;
-    this.CFOID = CFOID;
-    this.cirurgiao = cirurgiao;
+  private constructor(props: IDentista) {
+    this.nome = props.nome;
+    this.CFOID = props.CFOID;
+    this.cirurgiao = props.cirurgiao;
   }
 
   public static createDentista(props: IDentista): Dentista {
     let { nome, CFOID, cirurgiao } = props;
-    return new Dentista(nome, CFOID, cirurgiao);
+    return new Dentista({ nome, CFOID, cirurgiao });
   }
 }

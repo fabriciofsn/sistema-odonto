@@ -7,7 +7,7 @@ import {
   ErrorTelefoneInvalido,
 } from "./cliente.exception";
 
-export class Cliente {
+export class Cliente implements ICliente {
   private _nome: string;
   private _idade: string;
   private _CPF: string;
@@ -41,7 +41,7 @@ export class Cliente {
     return this._CPF;
   }
   private set CPF(value: string) {
-    const regexp: RegExp = /^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}/$;
+    const regexp: RegExp = /^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$/;
     if (!regexp.test(value)) {
       throw new ErrorCPFinvalido();
     }
@@ -52,7 +52,8 @@ export class Cliente {
     return this._CPFresponsavel;
   }
   private set CPFresponsavel(value: string | undefined) {
-    const regexp: RegExp = /^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}/$;
+    // /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+    const regexp: RegExp = /^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$/;
     if (value?.length) {
       if (!regexp.test(value)) {
         throw new ErrorCPFinvalido();
@@ -79,24 +80,24 @@ export class Cliente {
     this._telefone = value;
   }
 
-  private constructor(
-    nome: string,
-    idade: string,
-    CPF: string,
-    consulta: Consulta[],
-    telefone: string,
-    CPFresponsavel?: string
-  ) {
-    this.nome = nome;
-    this.idade = idade;
-    this.CPF = CPF;
-    this.consulta = consulta;
-    this.telefone = telefone;
-    this.CPFresponsavel = CPFresponsavel;
+  private constructor(props: ICliente) {
+    this.nome = props.nome;
+    this.idade = props.idade;
+    this.CPF = props.CPF;
+    this.consulta = props.consulta;
+    this.telefone = props.telefone;
+    this.CPFresponsavel = props.CPFresponsavel;
   }
 
   public static createCliente(props: ICliente): Cliente {
     let { nome, idade, CPF, CPFresponsavel, consulta, telefone } = props;
-    return new Cliente(nome, idade, CPF, consulta, telefone, CPFresponsavel);
+    return new Cliente({
+      nome,
+      idade,
+      CPF,
+      consulta,
+      telefone,
+      CPFresponsavel,
+    });
   }
 }

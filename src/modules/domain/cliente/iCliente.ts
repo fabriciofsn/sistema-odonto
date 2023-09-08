@@ -8,3 +8,5 @@ export interface ICliente {
   consulta: Consulta[];
   telefone: string;
 }
+
+export type createClienteProps = ICliente;
