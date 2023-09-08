@@ -1,4 +1,4 @@
-import { Dentista } from "../domain/dentista/Dentista";
+import { Dentista } from "../domain/dentista/dentista";
 
 export class Consulta {
   private _data: Date;

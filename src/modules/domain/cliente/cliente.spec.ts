@@ -1,7 +1,7 @@
 import { describe, test, beforeAll, expect } from "vitest";
 import { Consulta } from "../../shared/consulta";
 import { faker } from "@faker-js/faker";
-import { Dentista } from "../dentista/Dentista";
+import { Dentista } from "../dentista/dentista";
 import { Cliente } from "./cliente";
 import { createClienteProps } from "./iCliente";
 
