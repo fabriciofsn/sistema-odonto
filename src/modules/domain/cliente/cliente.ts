@@ -85,12 +85,13 @@ export class Cliente implements ICliente {
   }
 
   private constructor(props: ICliente) {
-    this.nome = props.nome;
-    this.idade = props.idade;
-    this.CPF = props.CPF;
-    this.consulta = props.consulta;
-    this.telefone = props.telefone;
-    this.CPFresponsavel = props.CPFresponsavel;
+    let { nome, idade, CPF, consulta, telefone, CPFresponsavel } = props;
+    this.nome = nome;
+    this.idade = idade;
+    this.CPF = CPF;
+    this.consulta = consulta;
+    this.telefone = telefone;
+    this.CPFresponsavel = CPFresponsavel;
   }
 
   public static createCliente(props: ICliente): Cliente {
