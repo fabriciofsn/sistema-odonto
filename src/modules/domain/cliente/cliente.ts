@@ -2,6 +2,7 @@ import { Consulta } from "../../shared/consulta";
 import { ICliente } from "./iCliente";
 import {
   ErrorCPFinvalido,
+  ErrorIdadeInvalida,
   ErrorTamanhoMaximoNome,
   ErrorTamanhoMinimoNome,
   ErrorTelefoneInvalido,
@@ -9,7 +10,7 @@ import {
 
 export class Cliente implements ICliente {
   private _nome: string;
-  private _idade: string;
+  private _idade: number;
   private _CPF: string;
   private _CPFresponsavel?: string;
   private _consulta: Consulta[];
@@ -30,10 +31,13 @@ export class Cliente implements ICliente {
     this._nome = value;
   }
 
-  public get idade(): string {
+  public get idade(): number {
     return this._idade;
   }
-  private set idade(value: string) {
+  private set idade(value: number) {
+    if (value <= 0) {
+      throw new ErrorIdadeInvalida();
+    }
     this._idade = value;
   }
 

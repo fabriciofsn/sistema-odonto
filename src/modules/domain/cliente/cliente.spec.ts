@@ -4,21 +4,26 @@ import { faker } from "@faker-js/faker";
 import { Dentista } from "../dentista/dentista";
 import { Cliente } from "./cliente";
 import { createClienteProps } from "./iCliente";
-import { ErrorTamanhoMinimoNome } from "./cliente.exception";
+import {
+  ErrorIdadeInvalida,
+  ErrorTamanhoMinimoNome,
+} from "./cliente.exception";
 
 let nomeValido: string;
-let idadeValida: string;
+let idadeValida: number;
 let CPFvalido: string;
 let CPFresponsavelValido: string;
 let consultaValida: Consulta[];
 let telefoneValido: string;
 
 let nomeInvalido: string;
+let idadeInvalida: number;
 
 beforeAll(async () => {
   nomeValido = faker.string.alpha({ length: { min: 3, max: 5 } });
   nomeInvalido = faker.string.alpha({ length: { min: 0, max: 1 } });
-  idadeValida = faker.string.alpha({ length: { min: 5, max: 70 } });
+  idadeValida = faker.number.int({ min: 5, max: 70 });
+  idadeInvalida = faker.number.int({ min: 0, max: 0 });
   CPFvalido = faker.string.numeric({ length: { min: 11, max: 11 } });
   CPFresponsavelValido = faker.string.numeric({ length: { min: 11, max: 11 } });
   telefoneValido = faker.string.alpha({ length: { min: 11, max: 11 } });
@@ -66,6 +71,21 @@ describe("test objeto cliente", () => {
 
     expect(() => Cliente.createCliente(clienteInvalido)).toThrowError(
       ErrorTamanhoMinimoNome
+    );
+  });
+
+  test("Não deve criar objeto cliente com idade menor que zero", async () => {
+    const clienteIdadeInvalida: createClienteProps = {
+      nome: nomeValido,
+      idade: idadeInvalida,
+      CPF: CPFvalido,
+      CPFresponsavel: CPFresponsavelValido,
+      consulta: consultaValida,
+      telefone: telefoneValido,
+    };
+
+    expect(() => Cliente.createCliente(clienteIdadeInvalida)).toThrowError(
+      ErrorIdadeInvalida
     );
   });
 });

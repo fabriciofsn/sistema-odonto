@@ -43,3 +43,11 @@ export class ErrorTelefoneInvalido extends ClienteException {
     this.name = "TelefoneInvalido";
   }
 }
+
+export class ErrorIdadeInvalida extends ClienteException {
+  constructor(message: string = "Idade inválida") {
+    super(message);
+    this.message = message;
+    this.name = "IdadeInvalida";
+  }
+}
