@@ -3,6 +3,7 @@ import { faker } from "@faker-js/faker";
 import { createDentistaProps } from "./iDentista";
 import { Dentista } from "./dentista";
 import { ErrorTamanhoMinimoNome } from "../cliente/cliente.exception";
+import { CFOIDinvalido } from "./dentista.exception";
 
 let nomeValido: string;
 let CFOvalido: string;
@@ -18,6 +19,7 @@ beforeAll(async () => {
   cirurgiao = true;
 
   nomeInvalido = faker.string.alpha({ length: { min: 0, max: 2 } });
+  CFOinvalido = faker.string.numeric({ length: { min: 0, max: 7 } });
 });
 
 describe("testa o objeto desntista", () => {
@@ -38,6 +40,18 @@ describe("testa o objeto desntista", () => {
     };
     expect(() => Dentista.createDentista(dentistaNomeInvalido)).toThrowError(
       ErrorTamanhoMinimoNome
+    );
+  });
+
+  test("Não deve criar objeto dentista com CFO inválido", () => {
+    const dentistaNomeInvalido: createDentistaProps = {
+      nome: nomeValido,
+      CFOID: CFOinvalido,
+      cirurgiao: cirurgiao,
+    };
+
+    expect(() => Dentista.createDentista(dentistaNomeInvalido)).toThrowError(
+      CFOIDinvalido
     );
   });
 });
