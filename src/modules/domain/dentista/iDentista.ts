@@ -3,3 +3,5 @@ export interface IDentista {
   CFOID: string;
   cirurgiao: boolean;
 }
+
+export type createDentistaProps = IDentista;
