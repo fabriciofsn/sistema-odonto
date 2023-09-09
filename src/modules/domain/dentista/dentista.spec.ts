@@ -11,7 +11,6 @@ let cirurgiao: boolean;
 
 let nomeInvalido: string;
 let CFOinvalido: string;
-let cirurgiaoInvalido: boolean;
 
 beforeAll(async () => {
   nomeValido = faker.string.alpha({ length: { min: 3, max: 5 } });
