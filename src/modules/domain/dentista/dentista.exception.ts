@@ -8,7 +8,7 @@ class DentistaException extends DomainException {
   }
 }
 
-export class CFPIDinvalido extends DentistaException {
+export class CFOIDinvalido extends DentistaException {
   constructor(messagem: string = "CFO inválido") {
     super(messagem);
     this.message = messagem;

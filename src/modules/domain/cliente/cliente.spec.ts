@@ -35,6 +35,7 @@ beforeAll(async () => {
   CPFresponsavelInvalido = faker.string.numeric({ length: { min: 1, max: 5 } });
   telefoneValido = faker.string.alpha({ length: { min: 11, max: 11 } });
   telefoneInvalido = faker.string.alpha({ length: { min: 0, max: 5 } });
+
   let dentista = Dentista.createDentista({
     nome: "jean",
     CFOID: "123456/78",

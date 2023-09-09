@@ -56,7 +56,6 @@ export class Cliente implements ICliente {
     return this._CPFresponsavel;
   }
   private set CPFresponsavel(value: string | undefined) {
-    // /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
     const regexp: RegExp = /^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$/;
     if (value?.length) {
       if (!regexp.test(value)) {
