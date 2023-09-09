@@ -21,7 +21,7 @@ beforeAll(async () => {
   CFOinvalido = faker.string.numeric({ length: { min: 0, max: 7 } });
 });
 
-describe("testa o objeto desntista", () => {
+describe("testa o objeto dentista", () => {
   test("Deve criar objeto dentista", async () => {
     const dentistaValido: createDentistaProps = {
       nome: nomeValido,
