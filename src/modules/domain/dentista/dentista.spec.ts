@@ -43,13 +43,13 @@ describe("testa o objeto dentista", () => {
   });
 
   test("Não deve criar objeto dentista com CFO inválido", () => {
-    const dentistaNomeInvalido: createDentistaProps = {
+    const dentistaCFOInvalido: createDentistaProps = {
       nome: nomeValido,
       CFOID: CFOinvalido,
       cirurgiao: cirurgiao,
     };
 
-    expect(() => Dentista.createDentista(dentistaNomeInvalido)).toThrowError(
+    expect(() => Dentista.createDentista(dentistaCFOInvalido)).toThrowError(
       CFOIDinvalido
     );
   });
