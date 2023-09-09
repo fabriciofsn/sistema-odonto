@@ -1,5 +1,5 @@
 import { ErrorTamanhoMinimoNome } from "../cliente/cliente.exception";
-import { CFPIDinvalido } from "./dentista.exception";
+import { CFOIDinvalido } from "./dentista.exception";
 import { IDentista } from "./iDentista";
 
 export class Dentista implements IDentista {
@@ -30,7 +30,7 @@ export class Dentista implements IDentista {
   public set CFOID(value: string) {
     const regex: RegExp = /^\d{6}\/\d{2}$/;
     if (!regex.test(value)) {
-      throw new CFPIDinvalido();
+      throw new CFOIDinvalido();
     }
     this._CFOID = value;
   }

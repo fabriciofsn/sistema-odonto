@@ -1,4 +1,5 @@
 import { Dentista } from "../domain/dentista/dentista";
+import { HoraInvalida } from "./consulta.exception";
 
 export class Consulta {
   private _data: Date;
@@ -16,7 +17,11 @@ export class Consulta {
     return this._hora;
   }
   public set hora(value: Date) {
-    this._hora = value;
+    if (value instanceof Date) {
+      this._hora = value;
+    } else {
+      throw new HoraInvalida();
+    }
   }
 
   public get dentista(): Dentista {
