@@ -37,14 +37,14 @@ beforeAll(async () => {
   telefoneInvalido = faker.string.alpha({ length: { min: 0, max: 5 } });
 
   let dentista = Dentista.createDentista({
-    nome: "jean",
+    nomeDentista: "jean",
     CFOID: "123456/78",
     cirurgiao: true,
   });
 
-  let consulta1 = new Consulta(new Date(), new Date(), dentista);
-  let consulta2 = new Consulta(new Date(), new Date(), dentista);
-  let consulta3 = new Consulta(new Date(), new Date(), dentista);
+  let consulta1 = new Consulta(new Date(), dentista);
+  let consulta2 = new Consulta(new Date(), dentista);
+  let consulta3 = new Consulta(new Date(), dentista);
   consultaValida = faker.helpers.arrayElements<Consulta>(
     [consulta1, consulta2, consulta3],
     {

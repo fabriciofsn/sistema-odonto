@@ -10,14 +10,14 @@ class Dentista {
     set cirurgiao(value) {
         this._cirurgiao = value;
     }
-    get nome() {
-        return this._nome;
+    get nomeDentista() {
+        return this._nomeDentista;
     }
-    set nome(value) {
+    set nomeDentista(value) {
         if (value.length < 3) {
             throw new cliente_exception_1.ErrorTamanhoMinimoNome();
         }
-        this._nome = value;
+        this._nomeDentista = value;
     }
     get CFOID() {
         return this._CFOID;
@@ -30,13 +30,13 @@ class Dentista {
         this._CFOID = value;
     }
     constructor(props) {
-        this.nome = props.nome;
+        this.nomeDentista = props.nomeDentista;
         this.CFOID = props.CFOID;
         this.cirurgiao = props.cirurgiao;
     }
     static createDentista(props) {
-        let { nome, CFOID, cirurgiao } = props;
-        return new Dentista({ nome, CFOID, cirurgiao });
+        let { nomeDentista, CFOID, cirurgiao } = props;
+        return new Dentista({ nomeDentista, CFOID, cirurgiao });
     }
 }
 exports.Dentista = Dentista;

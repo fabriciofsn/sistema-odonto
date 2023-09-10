@@ -24,7 +24,7 @@ beforeAll(async () => {
 describe("testa o objeto dentista", () => {
   test("Deve criar objeto dentista", async () => {
     const dentistaValido: createDentistaProps = {
-      nome: nomeValido,
+      nomeDentista: nomeValido,
       CFOID: CFOvalido,
       cirurgiao: cirurgiao,
     };
@@ -33,7 +33,7 @@ describe("testa o objeto dentista", () => {
 
   test("Não deve criar objeto dentista com nome inválido", async () => {
     const dentistaNomeInvalido: createDentistaProps = {
-      nome: nomeInvalido,
+      nomeDentista: nomeInvalido,
       CFOID: CFOvalido,
       cirurgiao: cirurgiao,
     };
@@ -44,7 +44,7 @@ describe("testa o objeto dentista", () => {
 
   test("Não deve criar objeto dentista com CFO inválido", () => {
     const dentistaCFOInvalido: createDentistaProps = {
-      nome: nomeValido,
+      nomeDentista: nomeValido,
       CFOID: CFOinvalido,
       cirurgiao: cirurgiao,
     };

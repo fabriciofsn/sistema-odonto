@@ -20,7 +20,7 @@ let CFOinvalido;
 (0, vitest_1.describe)("testa o objeto dentista", () => {
     (0, vitest_1.test)("Deve criar objeto dentista", async () => {
         const dentistaValido = {
-            nome: nomeValido,
+            nomeDentista: nomeValido,
             CFOID: CFOvalido,
             cirurgiao: cirurgiao,
         };
@@ -28,7 +28,7 @@ let CFOinvalido;
     });
     (0, vitest_1.test)("Não deve criar objeto dentista com nome inválido", async () => {
         const dentistaNomeInvalido = {
-            nome: nomeInvalido,
+            nomeDentista: nomeInvalido,
             CFOID: CFOvalido,
             cirurgiao: cirurgiao,
         };
@@ -36,7 +36,7 @@ let CFOinvalido;
     });
     (0, vitest_1.test)("Não deve criar objeto dentista com CFO inválido", () => {
         const dentistaCFOInvalido = {
-            nome: nomeValido,
+            nomeDentista: nomeValido,
             CFOID: CFOinvalido,
             cirurgiao: cirurgiao,
         };

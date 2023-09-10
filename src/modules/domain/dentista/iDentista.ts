@@ -1,5 +1,5 @@
 export interface IDentista {
-  nome: string;
+  nomeDentista: string;
   CFOID: string;
   cirurgiao: boolean;
 }

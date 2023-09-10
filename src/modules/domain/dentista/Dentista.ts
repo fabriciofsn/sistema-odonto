@@ -3,7 +3,7 @@ import { CFOIDinvalido } from "./dentista.exception";
 import { IDentista } from "./iDentista";
 
 export class Dentista implements IDentista {
-  private _nome: string;
+  private _nomeDentista: string;
   private _CFOID: string;
   private _cirurgiao: boolean;
 
@@ -14,14 +14,14 @@ export class Dentista implements IDentista {
     this._cirurgiao = value;
   }
 
-  public get nome(): string {
-    return this._nome;
+  public get nomeDentista(): string {
+    return this._nomeDentista;
   }
-  public set nome(value: string) {
+  public set nomeDentista(value: string) {
     if (value.length < 3) {
       throw new ErrorTamanhoMinimoNome();
     }
-    this._nome = value;
+    this._nomeDentista = value;
   }
 
   public get CFOID(): string {
@@ -36,13 +36,13 @@ export class Dentista implements IDentista {
   }
 
   private constructor(props: IDentista) {
-    this.nome = props.nome;
+    this.nomeDentista = props.nomeDentista;
     this.CFOID = props.CFOID;
     this.cirurgiao = props.cirurgiao;
   }
 
   public static createDentista(props: IDentista): Dentista {
-    let { nome, CFOID, cirurgiao } = props;
-    return new Dentista({ nome, CFOID, cirurgiao });
+    let { nomeDentista, CFOID, cirurgiao } = props;
+    return new Dentista({ nomeDentista, CFOID, cirurgiao });
   }
 }

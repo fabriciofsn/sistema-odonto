@@ -29,13 +29,13 @@ let telefoneInvalido;
     telefoneValido = faker_1.faker.string.alpha({ length: { min: 11, max: 11 } });
     telefoneInvalido = faker_1.faker.string.alpha({ length: { min: 0, max: 5 } });
     let dentista = dentista_1.Dentista.createDentista({
-        nome: "jean",
+        nomeDentista: "jean",
         CFOID: "123456/78",
         cirurgiao: true,
     });
-    let consulta1 = new consulta_1.Consulta(new Date(), new Date(), dentista);
-    let consulta2 = new consulta_1.Consulta(new Date(), new Date(), dentista);
-    let consulta3 = new consulta_1.Consulta(new Date(), new Date(), dentista);
+    let consulta1 = new consulta_1.Consulta(new Date(), dentista);
+    let consulta2 = new consulta_1.Consulta(new Date(), dentista);
+    let consulta3 = new consulta_1.Consulta(new Date(), dentista);
     consultaValida = faker_1.faker.helpers.arrayElements([consulta1, consulta2, consulta3], {
         min: 1,
         max: 3,
