@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cadastrarCliente = void 0;
 const cliente_1 = require("../../../../modules/domain/cliente/cliente");
-const consulta_1 = require("../../../../modules/shared/consulta");
 const dentista_1 = require("../../../../modules/domain/dentista/dentista");
+const consulta_1 = require("../../../../modules/shared/consulta");
 class CadastrarCliente {
     cadastro(req, res) {
         try {
@@ -15,9 +15,8 @@ class CadastrarCliente {
                 cirurgiao,
             });
             let { dia, mes, ano } = req.body;
-            let consulta = [
-                new consulta_1.Consulta(new Date(ano - dia - mes), dentista),
-            ];
+            let data = new Date(ano, mes - 1, dia).toLocaleDateString();
+            let consulta = [new consulta_1.Consulta(data, dentista)];
             const cliente = cliente_1.Cliente.createCliente({
                 nome,
                 idade,
@@ -26,9 +25,8 @@ class CadastrarCliente {
                 consulta,
                 telefone,
             });
-            console.log(cliente);
             res.json({
-                dados: cliente,
+                dados_cliente: cliente,
             });
         }
         catch (e) {

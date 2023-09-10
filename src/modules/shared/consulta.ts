@@ -1,13 +1,13 @@
 import { Dentista } from "../domain/dentista/dentista";
 
 export class Consulta {
-  private _data: Date;
+  private _data: string;
   private _dentista: Dentista;
 
-  public get data(): Date {
+  public get data(): string {
     return this._data;
   }
-  public set data(value: Date) {
+  public set data(value: string) {
     this._data = value;
   }
   public get dentista(): Dentista {
@@ -17,7 +17,7 @@ export class Consulta {
     this._dentista = value;
   }
 
-  constructor(data: Date, dentista: Dentista) {
+  constructor(data: string, dentista: Dentista) {
     this.data = data;
     this.dentista = dentista;
   }
