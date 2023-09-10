@@ -22,3 +22,4 @@ exports.default = (0, config_1.defineConfig)({
         ],
     },
 });
+//# sourceMappingURL=vite.config.js.map

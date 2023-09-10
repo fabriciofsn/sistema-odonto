@@ -40,3 +40,4 @@ class Dentista {
     }
 }
 exports.Dentista = Dentista;
+//# sourceMappingURL=dentista.js.map

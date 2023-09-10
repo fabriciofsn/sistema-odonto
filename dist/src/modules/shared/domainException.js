@@ -9,3 +9,4 @@ class DomainException extends Error {
     }
 }
 exports.DomainException = DomainException;
+//# sourceMappingURL=domainException.js.map

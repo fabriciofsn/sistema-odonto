@@ -49,3 +49,4 @@ class ErrorIdadeInvalida extends ClienteException {
     }
 }
 exports.ErrorIdadeInvalida = ErrorIdadeInvalida;
+//# sourceMappingURL=cliente.exception.js.map

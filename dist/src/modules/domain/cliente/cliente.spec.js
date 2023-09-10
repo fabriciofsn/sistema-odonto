@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const vitest_1 = require("vitest");
-const consulta_1 = require("../../shared/consulta");
+const consulta_1 = require("@modules/shared/consulta");
 const faker_1 = require("@faker-js/faker");
 const dentista_1 = require("../dentista/dentista");
 const cliente_1 = require("./cliente");
@@ -33,9 +33,10 @@ let telefoneInvalido;
         CFOID: "123456/78",
         cirurgiao: true,
     });
-    let consulta1 = new consulta_1.Consulta(new Date(), dentista);
-    let consulta2 = new consulta_1.Consulta(new Date(), dentista);
-    let consulta3 = new consulta_1.Consulta(new Date(), dentista);
+    let data = "2021/02/02";
+    let consulta1 = new consulta_1.Consulta(data, dentista);
+    let consulta2 = new consulta_1.Consulta(data, dentista);
+    let consulta3 = new consulta_1.Consulta(data, dentista);
     consultaValida = faker_1.faker.helpers.arrayElements([consulta1, consulta2, consulta3], {
         min: 1,
         max: 3,
@@ -109,3 +110,4 @@ let telefoneInvalido;
         (0, vitest_1.expect)(() => cliente_1.Cliente.createCliente(clienteTelefoneInvalido)).toThrowError(cliente_exception_1.ErrorTelefoneInvalido);
     });
 });
+//# sourceMappingURL=cliente.spec.js.map

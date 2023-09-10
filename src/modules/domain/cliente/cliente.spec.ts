@@ -1,5 +1,5 @@
 import { describe, test, beforeAll, expect } from "vitest";
-import { Consulta } from "../../shared/consulta";
+import { Consulta } from "@modules/shared/consulta";
 import { faker } from "@faker-js/faker";
 import { Dentista } from "../dentista/dentista";
 import { Cliente } from "./cliente";
@@ -42,9 +42,11 @@ beforeAll(async () => {
     cirurgiao: true,
   });
 
-  let consulta1 = new Consulta(new Date(), dentista);
-  let consulta2 = new Consulta(new Date(), dentista);
-  let consulta3 = new Consulta(new Date(), dentista);
+  let data: string = "2021/02/02";
+
+  let consulta1 = new Consulta(data, dentista);
+  let consulta2 = new Consulta(data, dentista);
+  let consulta3 = new Consulta(data, dentista);
   consultaValida = faker.helpers.arrayElements<Consulta>(
     [consulta1, consulta2, consulta3],
     {

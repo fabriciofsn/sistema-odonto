@@ -17,3 +17,4 @@ class CFOIDinvalido extends DentistaException {
     }
 }
 exports.CFOIDinvalido = CFOIDinvalido;
+//# sourceMappingURL=dentista.exception.js.map

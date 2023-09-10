@@ -7,3 +7,4 @@ const cadastrar_cliente_1 = require("./routers/clientes/cadastrar_cliente");
 exports.router = (0, express_1.Router)();
 exports.router.get("/", homepage_1.homePage.home);
 exports.router.post("/cadastrar/cliente", cadastrar_cliente_1.cadastrarCliente.cadastro);
+//# sourceMappingURL=router.js.map

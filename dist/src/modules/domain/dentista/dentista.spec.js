@@ -43,3 +43,4 @@ let CFOinvalido;
         (0, vitest_1.expect)(() => dentista_1.Dentista.createDentista(dentistaCFOInvalido)).toThrowError(dentista_exception_1.CFOIDinvalido);
     });
 });
+//# sourceMappingURL=dentista.spec.js.map

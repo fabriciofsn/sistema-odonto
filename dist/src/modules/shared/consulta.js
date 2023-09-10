@@ -20,3 +20,4 @@ class Consulta {
     }
 }
 exports.Consulta = Consulta;
+//# sourceMappingURL=consulta.js.map
