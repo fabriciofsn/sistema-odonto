@@ -20,11 +20,11 @@ export class Cliente implements ICliente {
     return this._nome;
   }
   private set nome(value: string) {
-    if (value.length < 3) {
+    if (value.trim().length < 3) {
       throw new ErrorTamanhoMinimoNome();
     }
 
-    if (value.length > 50) {
+    if (value.trim().length > 50) {
       throw new ErrorTamanhoMaximoNome();
     }
 

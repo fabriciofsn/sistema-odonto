@@ -11,13 +11,13 @@ export class Server {
     this.routes();
   }
 
-  private middlewares() {
+  private middlewares(): void {
     this.server.use(Express.json());
     this.server.use(bodyParser.json());
     this.server.use(bodyParser.urlencoded({ extended: true }));
   }
 
-  private routes() {
+  private routes(): void {
     this.server.use(router);
   }
 }

@@ -7,10 +7,10 @@ class Cliente {
         return this._nome;
     }
     set nome(value) {
-        if (value.length < 3) {
+        if (value.trim().length < 3) {
             throw new cliente_exception_1.ErrorTamanhoMinimoNome();
         }
-        if (value.length > 50) {
+        if (value.trim().length > 50) {
             throw new cliente_exception_1.ErrorTamanhoMaximoNome();
         }
         this._nome = value;
