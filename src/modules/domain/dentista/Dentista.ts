@@ -10,14 +10,14 @@ export class Dentista implements IDentista {
   public get cirurgiao(): boolean {
     return this._cirurgiao;
   }
-  public set cirurgiao(value: boolean) {
+  private set cirurgiao(value: boolean) {
     this._cirurgiao = value;
   }
 
   public get nomeDentista(): string {
     return this._nomeDentista;
   }
-  public set nomeDentista(value: string) {
+  private set nomeDentista(value: string) {
     if (value.length < 3) {
       throw new ErrorTamanhoMinimoNome();
     }
@@ -27,7 +27,7 @@ export class Dentista implements IDentista {
   public get CFOID(): string {
     return this._CFOID;
   }
-  public set CFOID(value: string) {
+  private set CFOID(value: string) {
     const regex: RegExp = /^\d{6}\/?\d{2}$/;
     if (!regex.test(value)) {
       throw new CFOIDinvalido();
