@@ -1,6 +1,5 @@
-import { Cliente } from "../modules/domain/cliente/cliente";
-import { ICliente } from "../modules/domain/cliente/iCliente";
-import { ConsultarDTO } from "./consulta.map";
+import { Cliente } from "@modules/domain/cliente/cliente";
+import { ICliente } from "@modules/domain/cliente/iCliente";
 
 export class ClienteDTO {
   public static clienteDTO(cliente: Cliente): ICliente {

@@ -1,4 +1,4 @@
-import { DomainException } from "../../shared/domainException";
+import { DomainException } from "../../../shared/domainException";
 
 class ClienteException extends DomainException {
   constructor(message: string = "Mensagem de erro cliente") {

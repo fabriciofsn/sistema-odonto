@@ -1,4 +1,4 @@
-import { Consulta } from "../../shared/consulta";
+import { Consulta } from "../../../shared/consulta";
 import { ICliente } from "./iCliente";
 import {
   ErrorCPFinvalido,

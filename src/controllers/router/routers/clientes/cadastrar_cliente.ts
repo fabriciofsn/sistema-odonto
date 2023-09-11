@@ -2,9 +2,8 @@ import { Request, Response } from "express";
 import { Cliente } from "../../../../modules/domain/cliente/cliente";
 import { Dentista } from "../../../../modules/domain/dentista/dentista";
 import { IDentista } from "../../../../modules/domain/dentista/iDentista";
-import { Consulta } from "../../../../modules/shared/consulta";
-import { ClienteDTO } from "../../../../mappers/cliente.map";
-import { ConsultarDTO } from "../../../../mappers/consulta.map";
+import { Consulta } from "../../../../shared/consulta";
+import { ClienteDTO } from "../../../../modules/mappers/cliente.map";
 
 class CadastrarCliente {
   public cadastro(req: Request, res: Response) {

@@ -1,4 +1,4 @@
-import { Dentista } from "../domain/dentista/dentista";
+import { Dentista } from "../modules/domain/dentista/dentista";
 
 export class Consulta {
   private _data: string;

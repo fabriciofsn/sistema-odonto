@@ -1,5 +1,5 @@
-import { Consulta } from "@modules/shared/consulta";
-import { IConsulta } from "@modules/shared/iconsulta";
+import { Consulta } from "@shared/consulta";
+import { IConsulta } from "@shared/iconsulta";
 
 export class ConsultarDTO {
   public static consultaDTO(consulta: Consulta): IConsulta {

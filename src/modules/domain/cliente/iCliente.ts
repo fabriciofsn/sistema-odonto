@@ -1,4 +1,4 @@
-import { Consulta } from "@modules/shared/consulta";
+import { Consulta } from "@shared/consulta";
 
 export interface ICliente {
   nome: string;

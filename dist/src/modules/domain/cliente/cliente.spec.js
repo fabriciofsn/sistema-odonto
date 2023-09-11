@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const vitest_1 = require("vitest");
-const consulta_1 = require("@modules/shared/consulta");
+const consulta_1 = require("@shared/consulta");
 const faker_1 = require("@faker-js/faker");
 const dentista_1 = require("../dentista/dentista");
 const cliente_1 = require("./cliente");
