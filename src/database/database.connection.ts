@@ -1,3 +1,12 @@
 import { Sequelize } from "sequelize";
 
-const connection: Sequelize = new Sequelize("");
+export const connection: Sequelize = new Sequelize(
+  "odonto",
+  "postgres",
+  "xtm440",
+  {
+    dialect: "postgres",
+    host: "localhost",
+    port: 5432,
+  }
+);

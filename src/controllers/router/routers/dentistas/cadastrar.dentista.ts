@@ -1,6 +1,6 @@
-import { Dentista } from "../../../../modules/domain/dentista/dentista";
-import { IDentista } from "../../../../modules/domain/dentista/iDentista";
-import { DentistaDTO } from "../../../../modules/mappers/dentista.map";
+import { Dentista } from "@modules/domain/dentista/dentista";
+import { IDentista } from "@modules/domain/dentista/iDentista";
+import { DentistaDTO } from "@modules/mappers/dentista.map";
 import { Request, Response } from "express";
 
 export class CadastrarDentista {

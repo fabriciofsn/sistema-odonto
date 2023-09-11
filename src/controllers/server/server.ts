@@ -1,6 +1,7 @@
 import bodyParser from "body-parser";
 import Express from "express";
 import { router } from "../router/router";
+import { connection } from "../../database/database.connection";
 
 export class Server {
   public server: Express.Application;
@@ -9,6 +10,7 @@ export class Server {
     this.server = Express();
     this.middlewares();
     this.routes();
+    this.databaseConnection();
   }
 
   private middlewares(): void {
@@ -19,5 +21,17 @@ export class Server {
 
   private routes(): void {
     this.server.use(router);
+  }
+
+  private databaseConnection(): void {
+    (async () => {
+      try {
+        connection.authenticate().then(() => {
+          console.log("Connected to database");
+        });
+      } catch (e) {
+        console.log(`There was an error ${e}`);
+      }
+    })();
   }
 }

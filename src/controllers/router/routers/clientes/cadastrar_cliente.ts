@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { Cliente } from "../../../../modules/domain/cliente/cliente";
-import { Dentista } from "../../../../modules/domain/dentista/dentista";
-import { IDentista } from "../../../../modules/domain/dentista/iDentista";
-import { Consulta } from "../../../../shared/consulta";
-import { ClienteDTO } from "../../../../modules/mappers/cliente.map";
+import { Cliente } from "@modules/domain/cliente/cliente";
+import { Dentista } from "@modules/domain/dentista/dentista";
+import { IDentista } from "@modules/domain/dentista/iDentista";
+import { Consulta } from "@shared/consulta";
+import { ClienteDTO } from "@modules/mappers/cliente.map";
 
 class CadastrarCliente {
   public cadastro(req: Request, res: Response) {
@@ -27,7 +27,7 @@ class CadastrarCliente {
         consulta,
         telefone,
       });
-
+      console.log(cliente);
       res.json({
         dados_cliente: ClienteDTO.clienteDTO(cliente),
       });

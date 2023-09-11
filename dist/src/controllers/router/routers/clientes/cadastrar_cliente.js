@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cadastrarCliente = void 0;
-const cliente_1 = require("../../../../modules/domain/cliente/cliente");
-const dentista_1 = require("../../../../modules/domain/dentista/dentista");
-const consulta_1 = require("../../../../shared/consulta");
-const cliente_map_1 = require("../../../../modules/mappers/cliente.map");
+const cliente_1 = require("@modules/domain/cliente/cliente");
+const dentista_1 = require("@modules/domain/dentista/dentista");
+const consulta_1 = require("@shared/consulta");
+const cliente_map_1 = require("@modules/mappers/cliente.map");
 class CadastrarCliente {
     cadastro(req, res) {
         try {
@@ -26,6 +26,7 @@ class CadastrarCliente {
                 consulta,
                 telefone,
             });
+            console.log(cliente);
             res.json({
                 dados_cliente: cliente_map_1.ClienteDTO.clienteDTO(cliente),
             });
