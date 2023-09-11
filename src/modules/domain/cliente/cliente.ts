@@ -1,5 +1,5 @@
 import { Consulta } from "../../shared/consulta";
-import { ICliente } from "./iCliente";
+import { ICliente, recDadosCliente } from "./iCliente";
 import {
   ErrorCPFinvalido,
   ErrorIdadeInvalida,
@@ -103,5 +103,9 @@ export class Cliente implements ICliente {
       telefone,
       CPFresponsavel,
     });
+  }
+
+  public static recDadosCliente(props: recDadosCliente): Cliente {
+    return new Cliente(props);
   }
 }

@@ -82,6 +82,9 @@ class Cliente {
             CPFresponsavel,
         });
     }
+    static recDadosCliente(props) {
+        return new Cliente(props);
+    }
 }
 exports.Cliente = Cliente;
 //# sourceMappingURL=cliente.js.map

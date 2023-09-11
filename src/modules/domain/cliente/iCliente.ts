@@ -1,4 +1,4 @@
-import { Consulta } from "../../shared/consulta";
+import { Consulta } from "@modules/shared/consulta";
 
 export interface ICliente {
   nome: string;
@@ -10,3 +10,4 @@ export interface ICliente {
 }
 
 export type createClienteProps = ICliente;
+export type recDadosCliente = Required<ICliente>;
