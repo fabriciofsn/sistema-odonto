@@ -6,7 +6,8 @@
     "baseUrl": "./src",
     "paths": {
       "@modules/*": ["./modules/*"],
-      "@shared/*": ["./shared/*"]
+      "@shared/*": ["./shared/*"],
+      "@controllers/*": ["./controllers/*"]
     },
     "rootDirs": ["src"],
     "sourceMap": true,
