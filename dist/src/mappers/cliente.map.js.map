@@ -1,0 +1,1 @@
+{"version":3,"file":"cliente.map.js","sourceRoot":"","sources":["../../../src/mappers/cliente.map.ts"],"names":[],"mappings":";;;AAIA,MAAa,UAAU;IACd,MAAM,CAAC,UAAU,CAAC,OAAgB;QACvC,OAAO;YACL,IAAI,EAAE,OAAO,CAAC,IAAI;YAClB,KAAK,EAAE,OAAO,CAAC,KAAK;YACpB,GAAG,EAAE,OAAO,CAAC,GAAG;YAChB,QAAQ,EAAE,OAAO,CAAC,QAAQ;YAC1B,QAAQ,EAAE,OAAO,CAAC,QAAQ;SAC3B,CAAC;IACJ,CAAC;CACF;AAVD,gCAUC"}

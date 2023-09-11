@@ -4,6 +4,7 @@ exports.cadastrarCliente = void 0;
 const cliente_1 = require("../../../../modules/domain/cliente/cliente");
 const dentista_1 = require("../../../../modules/domain/dentista/dentista");
 const consulta_1 = require("../../../../modules/shared/consulta");
+const cliente_map_1 = require("../../../../mappers/cliente.map");
 class CadastrarCliente {
     cadastro(req, res) {
         try {
@@ -26,7 +27,7 @@ class CadastrarCliente {
                 telefone,
             });
             res.json({
-                dados_cliente: cliente,
+                dados_cliente: cliente_map_1.ClienteDTO.clienteDTO(cliente),
             });
         }
         catch (e) {

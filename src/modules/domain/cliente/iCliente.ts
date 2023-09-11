@@ -10,4 +10,3 @@ export interface ICliente {
 }
 
 export type createClienteProps = ICliente;
-export type recDadosCliente = Required<ICliente>;

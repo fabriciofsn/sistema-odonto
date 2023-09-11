@@ -3,6 +3,8 @@ import { Cliente } from "../../../../modules/domain/cliente/cliente";
 import { Dentista } from "../../../../modules/domain/dentista/dentista";
 import { IDentista } from "../../../../modules/domain/dentista/iDentista";
 import { Consulta } from "../../../../modules/shared/consulta";
+import { ClienteDTO } from "../../../../mappers/cliente.map";
+import { ConsultarDTO } from "../../../../mappers/consulta.map";
 
 class CadastrarCliente {
   public cadastro(req: Request, res: Response) {
@@ -18,7 +20,6 @@ class CadastrarCliente {
       let { dia, mes, ano } = req.body;
       let data: string = new Date(ano, mes - 1, dia).toLocaleDateString();
       let consulta: Consulta[] = [new Consulta(data, dentista)];
-
       const cliente = Cliente.createCliente({
         nome,
         idade,
@@ -27,8 +28,9 @@ class CadastrarCliente {
         consulta,
         telefone,
       });
+
       res.json({
-        dados_cliente: cliente,
+        dados_cliente: ClienteDTO.clienteDTO(cliente),
       });
     } catch (e) {
       console.log(`There was an error${e}`);
