@@ -1,5 +1,8 @@
 import { Server } from "./controllers/server/server";
+require("dotenv").config();
 
-new Server().server.listen(3000, () => {
-  console.log("Server is running!");
+const port: any = process.env.PORT;
+
+new Server().server.listen(port | 4000, () => {
+  console.log(`Server is running on PORT ${port}!`);
 });

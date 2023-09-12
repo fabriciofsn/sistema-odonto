@@ -1,9 +1,10 @@
 import { Sequelize } from "sequelize";
+require("dotenv").config();
 
 export const connection: Sequelize = new Sequelize(
   "odonto",
   "postgres",
-  "xtm440",
+  process.env.SENHA,
   {
     dialect: "postgres",
     host: "localhost",
