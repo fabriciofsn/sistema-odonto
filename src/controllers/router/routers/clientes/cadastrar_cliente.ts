@@ -27,7 +27,7 @@ class CadastrarCliente {
         consulta,
         telefone,
       });
-      console.log(cliente);
+
       res.json({
         dados_cliente: ClienteDTO.clienteDTO(cliente),
       });
