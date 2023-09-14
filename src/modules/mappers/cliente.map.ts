@@ -1,9 +1,6 @@
 import { Cliente } from "@modules/domain/cliente/cliente";
-import { ICliente } from "@modules/domain/cliente/iCliente";
-import { ConsultarDTO } from "./consulta.map";
-
 export class ClienteDTO {
-  public static clienteDTO(cliente: Cliente) {
+  public static clienteDTO(cliente: Cliente): {} {
     return {
       nome: cliente.nome,
       idade: cliente.idade,
