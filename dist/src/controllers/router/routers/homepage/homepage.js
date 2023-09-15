@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.homePage = void 0;
 class HomePage {
-    home(Req, res) {
+    home(req, res) {
         return res.json({
             message: "Páginal inicial",
         });

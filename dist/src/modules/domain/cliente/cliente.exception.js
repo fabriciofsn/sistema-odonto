@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ErrorIdadeInvalida = exports.ErrorTelefoneInvalido = exports.ErrorCPFinvalido = exports.ErrorTamanhoMaximoNome = exports.ErrorTamanhoMinimoNome = void 0;
+exports.EnderecoInvalido = exports.ErrorIdadeInvalida = exports.ErrorTelefoneInvalido = exports.ErrorCPFinvalido = exports.ErrorTamanhoMaximoNome = exports.ErrorTamanhoMinimoNome = void 0;
 const domainException_1 = require("../../../shared/domainException");
 class ClienteException extends domainException_1.DomainException {
     constructor(message = "Mensagem de erro cliente") {
@@ -49,4 +49,12 @@ class ErrorIdadeInvalida extends ClienteException {
     }
 }
 exports.ErrorIdadeInvalida = ErrorIdadeInvalida;
+class EnderecoInvalido extends ClienteException {
+    constructor(message = "Endereço inválido") {
+        super(message);
+        this.message = message;
+        this.name = "EnderecoInvalido";
+    }
+}
+exports.EnderecoInvalido = EnderecoInvalido;
 //# sourceMappingURL=cliente.exception.js.map

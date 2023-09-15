@@ -1,15 +1,21 @@
 import { Request, Response } from "express";
-import { Cliente } from "@modules/domain/cliente/cliente";
+import { Cliente } from "@modules/domain/cliente/cliente.entity";
 import { Dentista } from "@modules/domain/dentista/dentista";
 import { IDentista } from "@modules/domain/dentista/iDentista";
 import { Consulta } from "@shared/consulta";
 import { ClienteDTO } from "@modules/mappers/cliente.map";
+import { Endereco } from "@modules/domain/endereco/endereco.entity";
 
 class CadastrarCliente {
   public cadastro(req: Request, res: Response) {
     try {
       let { nome, idade, CPF, CPFresponsavel, telefone } = req.body;
       let { nomeDentista, CFOID, cirurgiao }: IDentista = req.body;
+      let { estado, cidade, cep, bairro, rua, numero } = req.body;
+
+      let enderecos: Endereco[] = [
+        new Endereco(estado, cidade, cep, bairro, rua, numero),
+      ];
 
       let dentista: Dentista = Dentista.createDentista({
         nomeDentista,
@@ -26,6 +32,7 @@ class CadastrarCliente {
         CPFresponsavel,
         consulta,
         telefone,
+        enderecos,
       });
 
       res.json({

@@ -4,8 +4,9 @@ const vitest_1 = require("vitest");
 const consulta_1 = require("@shared/consulta");
 const faker_1 = require("@faker-js/faker");
 const dentista_1 = require("../dentista/dentista");
-const cliente_1 = require("./cliente");
+const cliente_entity_1 = require("./cliente.entity");
 const cliente_exception_1 = require("./cliente.exception");
+const endereco_entity_1 = require("../endereco/endereco.entity");
 let nomeValido;
 let idadeValida;
 let CPFvalido;
@@ -17,6 +18,14 @@ let idadeInvalida;
 let CPFinvalido;
 let CPFresponsavelInvalido;
 let telefoneInvalido;
+// ENDEREÇO
+let estado;
+let cidade;
+let bairro;
+let rua;
+let numero;
+let cep;
+let endereco;
 (0, vitest_1.beforeAll)(async () => {
     nomeValido = faker_1.faker.string.alpha({ length: { min: 3, max: 5 } });
     nomeInvalido = faker_1.faker.string.alpha({ length: { min: 0, max: 1 } });
@@ -28,11 +37,18 @@ let telefoneInvalido;
     CPFresponsavelInvalido = faker_1.faker.string.numeric({ length: { min: 1, max: 5 } });
     telefoneValido = faker_1.faker.string.alpha({ length: { min: 11, max: 11 } });
     telefoneInvalido = faker_1.faker.string.alpha({ length: { min: 0, max: 5 } });
+    estado = faker_1.faker.string.alpha({ length: { min: 0, max: 5 } });
+    cidade = faker_1.faker.string.alpha({ length: { min: 0, max: 5 } });
+    bairro = faker_1.faker.string.alpha({ length: { min: 0, max: 5 } });
+    rua = faker_1.faker.string.alpha({ length: { min: 0, max: 5 } });
+    numero = faker_1.faker.number.int({ min: 0, max: 5 });
+    cep = faker_1.faker.string.numeric({ length: { min: 8, max: 8 } });
     let dentista = dentista_1.Dentista.createDentista({
         nomeDentista: "jean",
         CFOID: "123456/78",
         cirurgiao: true,
     });
+    endereco = [new endereco_entity_1.Endereco(estado, cidade, cep, bairro, rua, numero)];
     let data = "2021/02/02";
     let consulta1 = new consulta_1.Consulta(data, dentista);
     let consulta2 = new consulta_1.Consulta(data, dentista);
@@ -51,8 +67,9 @@ let telefoneInvalido;
             CPFresponsavel: CPFresponsavelValido,
             consulta: consultaValida,
             telefone: telefoneValido,
+            enderecos: endereco,
         };
-        (0, vitest_1.expect)(cliente_1.Cliente.createCliente(clienteValido)).to.be.instanceOf(cliente_1.Cliente);
+        (0, vitest_1.expect)(cliente_entity_1.Cliente.createCliente(clienteValido)).to.be.instanceOf(cliente_entity_1.Cliente);
     });
     (0, vitest_1.test)("não deve criar objeto cliente com nome inválido", async () => {
         const clienteInvalido = {
@@ -62,8 +79,9 @@ let telefoneInvalido;
             CPFresponsavel: CPFresponsavelValido,
             consulta: consultaValida,
             telefone: telefoneValido,
+            enderecos: endereco,
         };
-        (0, vitest_1.expect)(() => cliente_1.Cliente.createCliente(clienteInvalido)).toThrowError(cliente_exception_1.ErrorTamanhoMinimoNome);
+        (0, vitest_1.expect)(() => cliente_entity_1.Cliente.createCliente(clienteInvalido)).toThrowError(cliente_exception_1.ErrorTamanhoMinimoNome);
     });
     (0, vitest_1.test)("Não deve criar objeto cliente com idade menor que zero", async () => {
         const clienteIdadeInvalida = {
@@ -73,8 +91,9 @@ let telefoneInvalido;
             CPFresponsavel: CPFresponsavelValido,
             consulta: consultaValida,
             telefone: telefoneValido,
+            enderecos: endereco,
         };
-        (0, vitest_1.expect)(() => cliente_1.Cliente.createCliente(clienteIdadeInvalida)).toThrowError(cliente_exception_1.ErrorIdadeInvalida);
+        (0, vitest_1.expect)(() => cliente_entity_1.Cliente.createCliente(clienteIdadeInvalida)).toThrowError(cliente_exception_1.ErrorIdadeInvalida);
     });
     (0, vitest_1.test)("não deve criar objeto cliente com CPF inválido", async () => {
         const clienteCPFInvalido = {
@@ -84,8 +103,9 @@ let telefoneInvalido;
             CPFresponsavel: CPFresponsavelValido,
             consulta: consultaValida,
             telefone: telefoneValido,
+            enderecos: endereco,
         };
-        (0, vitest_1.expect)(() => cliente_1.Cliente.createCliente(clienteCPFInvalido)).toThrowError(cliente_exception_1.ErrorCPFinvalido);
+        (0, vitest_1.expect)(() => cliente_entity_1.Cliente.createCliente(clienteCPFInvalido)).toThrowError(cliente_exception_1.ErrorCPFinvalido);
     });
     (0, vitest_1.test)("Não deve criar objeto cliente com CPF do responsavel invalido", async () => {
         const clienteCPFresponsavelInvalido = {
@@ -95,8 +115,9 @@ let telefoneInvalido;
             CPFresponsavel: CPFresponsavelInvalido,
             consulta: consultaValida,
             telefone: telefoneValido,
+            enderecos: endereco,
         };
-        (0, vitest_1.expect)(() => cliente_1.Cliente.createCliente(clienteCPFresponsavelInvalido)).toThrowError(cliente_exception_1.ErrorCPFinvalido);
+        (0, vitest_1.expect)(() => cliente_entity_1.Cliente.createCliente(clienteCPFresponsavelInvalido)).toThrowError(cliente_exception_1.ErrorCPFinvalido);
     });
     (0, vitest_1.test)("não deve criar objeto cliente com telefone inválido", () => {
         const clienteTelefoneInvalido = {
@@ -106,8 +127,9 @@ let telefoneInvalido;
             CPFresponsavel: CPFresponsavelValido,
             consulta: consultaValida,
             telefone: telefoneInvalido,
+            enderecos: endereco,
         };
-        (0, vitest_1.expect)(() => cliente_1.Cliente.createCliente(clienteTelefoneInvalido)).toThrowError(cliente_exception_1.ErrorTelefoneInvalido);
+        (0, vitest_1.expect)(() => cliente_entity_1.Cliente.createCliente(clienteTelefoneInvalido)).toThrowError(cliente_exception_1.ErrorTelefoneInvalido);
     });
 });
 //# sourceMappingURL=cliente.spec.js.map

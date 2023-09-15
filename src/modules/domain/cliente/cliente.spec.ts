@@ -2,7 +2,7 @@ import { describe, test, beforeAll, expect } from "vitest";
 import { Consulta } from "@shared/consulta";
 import { faker } from "@faker-js/faker";
 import { Dentista } from "../dentista/dentista";
-import { Cliente } from "./cliente";
+import { Cliente } from "./cliente.entity";
 import { createClienteProps } from "./iCliente";
 import {
   ErrorCPFinvalido,
@@ -10,6 +10,7 @@ import {
   ErrorTamanhoMinimoNome,
   ErrorTelefoneInvalido,
 } from "./cliente.exception";
+import { Endereco } from "../endereco/endereco.entity";
 
 let nomeValido: string;
 let idadeValida: number;
@@ -24,6 +25,15 @@ let CPFinvalido: string;
 let CPFresponsavelInvalido: string;
 let telefoneInvalido: string;
 
+// ENDEREÇO
+let estado: string;
+let cidade: string;
+let bairro: string;
+let rua: string;
+let numero: number;
+let cep: string;
+let endereco: Endereco[];
+
 beforeAll(async () => {
   nomeValido = faker.string.alpha({ length: { min: 3, max: 5 } });
   nomeInvalido = faker.string.alpha({ length: { min: 0, max: 1 } });
@@ -35,12 +45,20 @@ beforeAll(async () => {
   CPFresponsavelInvalido = faker.string.numeric({ length: { min: 1, max: 5 } });
   telefoneValido = faker.string.alpha({ length: { min: 11, max: 11 } });
   telefoneInvalido = faker.string.alpha({ length: { min: 0, max: 5 } });
+  estado = faker.string.alpha({ length: { min: 0, max: 5 } });
+  cidade = faker.string.alpha({ length: { min: 0, max: 5 } });
+  bairro = faker.string.alpha({ length: { min: 0, max: 5 } });
+  rua = faker.string.alpha({ length: { min: 0, max: 5 } });
+  numero = faker.number.int({ min: 0, max: 5 });
+  cep = faker.string.numeric({ length: { min: 8, max: 8 } });
 
   let dentista = Dentista.createDentista({
     nomeDentista: "jean",
     CFOID: "123456/78",
     cirurgiao: true,
   });
+
+  endereco = [new Endereco(estado, cidade, cep, bairro, rua, numero)];
 
   let data: string = "2021/02/02";
 
@@ -65,6 +83,7 @@ describe("test objeto cliente", () => {
       CPFresponsavel: CPFresponsavelValido,
       consulta: consultaValida,
       telefone: telefoneValido,
+      enderecos: endereco,
     };
 
     expect(Cliente.createCliente(clienteValido)).to.be.instanceOf(Cliente);
@@ -78,6 +97,7 @@ describe("test objeto cliente", () => {
       CPFresponsavel: CPFresponsavelValido,
       consulta: consultaValida,
       telefone: telefoneValido,
+      enderecos: endereco,
     };
 
     expect(() => Cliente.createCliente(clienteInvalido)).toThrowError(
@@ -93,6 +113,7 @@ describe("test objeto cliente", () => {
       CPFresponsavel: CPFresponsavelValido,
       consulta: consultaValida,
       telefone: telefoneValido,
+      enderecos: endereco,
     };
 
     expect(() => Cliente.createCliente(clienteIdadeInvalida)).toThrowError(
@@ -108,6 +129,7 @@ describe("test objeto cliente", () => {
       CPFresponsavel: CPFresponsavelValido,
       consulta: consultaValida,
       telefone: telefoneValido,
+      enderecos: endereco,
     };
 
     expect(() => Cliente.createCliente(clienteCPFInvalido)).toThrowError(
@@ -123,6 +145,7 @@ describe("test objeto cliente", () => {
       CPFresponsavel: CPFresponsavelInvalido,
       consulta: consultaValida,
       telefone: telefoneValido,
+      enderecos: endereco,
     };
 
     expect(() =>
@@ -138,6 +161,7 @@ describe("test objeto cliente", () => {
       CPFresponsavel: CPFresponsavelValido,
       consulta: consultaValida,
       telefone: telefoneInvalido,
+      enderecos: endereco,
     };
 
     expect(() => Cliente.createCliente(clienteTelefoneInvalido)).toThrowError(

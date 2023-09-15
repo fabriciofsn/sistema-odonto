@@ -1,12 +1,14 @@
-import { Consulta } from "../../../shared/consulta";
+import { Consulta } from "@shared/consulta";
 import { ICliente } from "./iCliente";
 import {
+  EnderecoInvalido,
   ErrorCPFinvalido,
   ErrorIdadeInvalida,
   ErrorTamanhoMaximoNome,
   ErrorTamanhoMinimoNome,
   ErrorTelefoneInvalido,
 } from "./cliente.exception";
+import { Endereco } from "../endereco/endereco.entity";
 
 export class Cliente implements ICliente {
   private _nome: string;
@@ -15,6 +17,7 @@ export class Cliente implements ICliente {
   private _CPFresponsavel?: string;
   private _consulta: Consulta[];
   private _telefone: string;
+  private _enderecos: Endereco[];
 
   public get nome(): string {
     return this._nome;
@@ -84,18 +87,34 @@ export class Cliente implements ICliente {
     this._telefone = value;
   }
 
+  public get enderecos(): Endereco[] {
+    return this._enderecos;
+  }
+  private set enderecos(value: Endereco[]) {
+    if (value.length < 1) {
+      throw new EnderecoInvalido();
+    }
+    if (value.length > 3) {
+      throw new EnderecoInvalido();
+    }
+    this._enderecos = value;
+  }
+
   private constructor(props: ICliente) {
-    let { nome, idade, CPF, consulta, telefone, CPFresponsavel } = props;
+    let { nome, idade, CPF, consulta, telefone, CPFresponsavel, enderecos } =
+      props;
     this.nome = nome;
     this.idade = idade;
     this.CPF = CPF;
     this.consulta = consulta;
     this.telefone = telefone;
     this.CPFresponsavel = CPFresponsavel;
+    this.enderecos = enderecos;
   }
 
   public static createCliente(props: ICliente): Cliente {
-    let { nome, idade, CPF, CPFresponsavel, consulta, telefone } = props;
+    let { nome, idade, CPF, CPFresponsavel, consulta, telefone, enderecos } =
+      props;
     return new Cliente({
       nome,
       idade,
@@ -103,6 +122,7 @@ export class Cliente implements ICliente {
       consulta,
       telefone,
       CPFresponsavel,
+      enderecos,
     });
   }
 }

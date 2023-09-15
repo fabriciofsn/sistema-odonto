@@ -51,3 +51,11 @@ export class ErrorIdadeInvalida extends ClienteException {
     this.name = "IdadeInvalida";
   }
 }
+
+export class EnderecoInvalido extends ClienteException {
+  constructor(message: string = "Endereço inválido") {
+    super(message);
+    this.message = message;
+    this.name = "EnderecoInvalido";
+  }
+}

@@ -4,7 +4,7 @@ exports.cadastrarDentista = exports.CadastrarDentista = void 0;
 const dentista_1 = require("@modules/domain/dentista/dentista");
 const dentista_map_1 = require("@modules/mappers/dentista.map");
 class CadastrarDentista {
-    cadastrarDentista(req, res) {
+    async cadastrarDentista(req, res) {
         let { nomeDentista, CFOID, cirurgiao } = req.body;
         try {
             const dentista = dentista_1.Dentista.createDentista({

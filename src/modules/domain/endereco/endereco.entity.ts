@@ -3,6 +3,7 @@ import { CepInvalido } from "./endereco.exception";
 export class Endereco {
   private _estado: string;
   private _cidade: string;
+  private _bairro: string;
   private _cep: string;
   private _rua: string;
   private _numero: number;
@@ -25,8 +26,9 @@ export class Endereco {
     return this._cep;
   }
   public set cep(value: string) {
-    const regexp: RegExp = /^\d{5}\-?\d{3}$/;
+    const regexp: RegExp = /^\d{5}\-?\d{3}/;
     if (!regexp.test(value)) {
+      console.log(value);
       throw new CepInvalido();
     }
     this._cep = value;
@@ -46,10 +48,17 @@ export class Endereco {
     this._numero = value;
   }
 
+  public get bairro(): string {
+    return this._bairro;
+  }
+  public set bairro(value: string) {
+    this._bairro = value;
+  }
   constructor(
     estado: string,
     cidade: string,
     cep: string,
+    bairro: string,
     rua: string,
     numero: number
   ) {
@@ -58,5 +67,6 @@ export class Endereco {
     this.cep = cep;
     this.rua = rua;
     this.numero = numero;
+    this.bairro = bairro;
   }
 }
