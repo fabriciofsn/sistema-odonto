@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConsultarDTO = void 0;
+const dentista_map_1 = require("./dentista.map");
 class ConsultarDTO {
     static consultaDTO(consulta) {
-        consulta.map((dados) => {
+        return consulta.map((dados) => {
             return {
                 data: dados.data,
-                dentista: dados.dentista,
+                dentista: dentista_map_1.DentistaDTO.dentistaDTO(dados.dentista),
             };
         });
     }
