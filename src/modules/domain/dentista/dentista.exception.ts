@@ -1,6 +1,7 @@
+import e from "express";
 import { DomainException } from "../../../shared/domainException";
 
-class DentistaException extends DomainException {
+export class DentistaException extends DomainException {
   constructor(message: string = "Mensagem de erro dentista") {
     super(message);
     this.message = message;
@@ -13,5 +14,13 @@ export class CFOIDinvalido extends DentistaException {
     super(messagem);
     this.message = messagem;
     this.name = "CFOinvalido";
+  }
+}
+
+export class FalhaAoBuscarDentistas extends DentistaException {
+  constructor(message: string = "Falha ao carregar dentistas") {
+    super(message);
+    this.message = message;
+    this.name = "falhaAoCarregarDentistas";
   }
 }
