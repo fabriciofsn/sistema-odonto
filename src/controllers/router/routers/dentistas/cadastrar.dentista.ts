@@ -2,7 +2,6 @@ import { Dentista } from "@modules/domain/dentista/dentista";
 import { IDentista } from "@modules/domain/dentista/iDentista";
 import { DentistaDTO } from "@modules/mappers/dentista.map";
 import { Request, Response } from "express";
-import { DentistaModel } from "database/model.dentista";
 
 export class CadastrarDentista {
   public async cadastrarDentista(req: Request, res: Response): Promise<void> {

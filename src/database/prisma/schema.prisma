@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Dentista{
+  id String @id @default(cuid())
+  nome String @db.VarChar(50)
+  CFOID String @unique @db.VarChar(10)
+  cirurgiao Boolean
+  consultas Consulta[]
+  dataCriacao DateTime @default(now()) @map("data_criacao")
+  dataAtualizacao DateTime @updatedAt @map("data_atualizacao")
+  @@map("dentistas")
+}
+
+model Consulta{
+  id String @id @default(cuid())
+  dataConsulta DateTime @map("data_consulta")
+  dentista Dentista[]
+  clientes Cliente @relation(fields: [id],references: [id])
+  dataCriacao DateTime @default(now()) @map("data_criacao")
+  dataAtualizacao DateTime @updatedAt @map("data_atualizacao")
+
+  @@map("consultas")
+}
+
+model Cliente{
+  id String @id @default(cuid())
+  nome String @db.VarChar(50)
+  idade Int
+  CPF String @db.VarChar(11)
+  CPFresponsavel String? @db.VarChar(11)
+  consultas Consulta[]
+  telefone String @db.VarChar(11)
+  endereco Endereco[]
+
+
+  @@map("clientes")
+}
+
+model Endereco{
+  id Int @id @default(autoincrement())
+  estado String @db.VarChar(30)
+  cidade String @db.VarChar(30)
+  bairro String @db.VarChar(40)
+  cep String @db.VarChar(10)
+  rua String @db.VarChar(40)
+  numero Int
+  cliente Cliente[]
+
+  @@map("enderecos")
+}
