@@ -10,27 +10,49 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Dentista{
   id String @id @default(cuid())
   nome String @db.VarChar(50)
   CFOID String @unique @db.VarChar(10)
   cirurgiao Boolean
-  consultas Consulta[]
+  consultas DentistaConsulta[]
   dataCriacao DateTime @default(now()) @map("data_criacao")
   dataAtualizacao DateTime @updatedAt @map("data_atualizacao")
   @@map("dentistas")
 }
 
+
+model DentistaConsulta{
+  dentista Dentista @relation(fields: [dentistaId], references: [id])
+  dentistaId String @map("dentista_id")
+  consulta Consulta @relation(fields: [consultaId], references: [id])
+  consultaId String @map("consulta_id")
+
+  @@id([dentistaId,consultaId])
+
+  @@map("dentista_consulta")
+}
+
 model Consulta{
   id String @id @default(cuid())
   dataConsulta DateTime @map("data_consulta")
-  dentista Dentista[]
-  clientes Cliente @relation(fields: [id],references: [id])
+  dentista DentistaConsulta[]
+  clientes ClienteConsulta[]
   dataCriacao DateTime @default(now()) @map("data_criacao")
   dataAtualizacao DateTime @updatedAt @map("data_atualizacao")
 
   @@map("consultas")
+}
+
+
+model ClienteConsulta{
+  cliente Cliente @relation(fields: [clienteId], references: [id])
+  clienteId String @map("consulta_id")
+  consulta Consulta @relation(fields: [consultaId], references: [id])
+  consultaId String @map("consulta__id")
+
+  @@id([clienteId,consultaId])
+  @@map("cliente_consulta")
 }
 
 model Cliente{
@@ -39,12 +61,21 @@ model Cliente{
   idade Int
   CPF String @db.VarChar(11)
   CPFresponsavel String? @db.VarChar(11)
-  consultas Consulta[]
+  consultas ClienteConsulta[]
   telefone String @db.VarChar(11)
-  endereco Endereco[]
-
+  endereco ClienteEndereco[]
 
   @@map("clientes")
+}
+
+model ClienteEndereco{
+  cliente Cliente @relation(fields: [clienteId],references: [id])
+  clienteId String @map("cliente_id")
+  endereco Endereco @relation(fields: [enderecoId], references: [id])
+  enderecoId Int @map("endereco_id")
+
+  @@id([clienteId,enderecoId])
+  @@map("clientes_enderecos")
 }
 
 model Endereco{
@@ -54,8 +85,8 @@ model Endereco{
   bairro String @db.VarChar(40)
   cep String @db.VarChar(10)
   rua String @db.VarChar(40)
-  numero Int
-  cliente Cliente[]
+  numero Int @db.Integer
+  cliente ClienteEndereco[]
 
   @@map("enderecos")
 }
