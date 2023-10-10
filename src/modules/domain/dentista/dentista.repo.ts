@@ -6,9 +6,10 @@ export class DentistaRepoDB
   extends DataSource
   implements IDentistaDB<Dentista>
 {
-  recByID(cuid: string): Promise<Dentista | null> {
+  async recByID(cuid: string): Promise<Dentista | null> {
     throw new Error("Method not implemented.");
   }
+
   recAll(): Promise<Dentista[]> {
     throw new Error("Method not implemented.");
   }
