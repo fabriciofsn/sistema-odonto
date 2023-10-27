@@ -1,14 +1,11 @@
 import { describe, test, beforeAll, expect } from "vitest";
 import { Consulta } from "@shared/consulta";
 import { faker } from "@faker-js/faker";
-import { Dentista } from "../dentista/dentista";
+import { Dentista } from "../dentista/Dentista";
 import { Cliente } from "./cliente.entity";
-import { createClienteProps } from "./iCliente";
+import { createClienteProps } from "./cliente.interface";
 import {
-  ErrorCPFinvalido,
-  ErrorIdadeInvalida,
-  ErrorTamanhoMinimoNome,
-  ErrorTelefoneInvalido,
+ ClienteExceptions
 } from "./cliente.exception";
 import { Endereco } from "../endereco/endereco.entity";
 
@@ -101,7 +98,7 @@ describe("test objeto cliente", () => {
     };
 
     expect(() => Cliente.createCliente(clienteInvalido)).toThrowError(
-      ErrorTamanhoMinimoNome
+      ClienteExceptions.ErrorTamanhoMinimoNome
     );
   });
 
@@ -117,7 +114,7 @@ describe("test objeto cliente", () => {
     };
 
     expect(() => Cliente.createCliente(clienteIdadeInvalida)).toThrowError(
-      ErrorIdadeInvalida
+      ClienteExceptions.ErrorIdadeInvalida
     );
   });
 
@@ -133,7 +130,7 @@ describe("test objeto cliente", () => {
     };
 
     expect(() => Cliente.createCliente(clienteCPFInvalido)).toThrowError(
-      ErrorCPFinvalido
+      ClienteExceptions.ErrorCPFinvalido
     );
   });
 
@@ -150,7 +147,7 @@ describe("test objeto cliente", () => {
 
     expect(() =>
       Cliente.createCliente(clienteCPFresponsavelInvalido)
-    ).toThrowError(ErrorCPFinvalido);
+    ).toThrowError(ClienteExceptions.ErrorCPFinvalido);
   });
 
   test("não deve criar objeto cliente com telefone inválido", () => {
@@ -165,7 +162,7 @@ describe("test objeto cliente", () => {
     };
 
     expect(() => Cliente.createCliente(clienteTelefoneInvalido)).toThrowError(
-      ErrorTelefoneInvalido
+      ClienteExceptions.ErrorTelefoneInvalido
     );
   });
 });

@@ -8,7 +8,7 @@ class ClienteException extends DomainException {
   }
 }
 
-export class ErrorTamanhoMinimoNome extends ClienteException {
+class ErrorTamanhoMinimoNome extends ClienteException {
   constructor(
     message: string = "Cliente não pode possuir nome inferior a 3 caracteres"
   ) {
@@ -18,7 +18,7 @@ export class ErrorTamanhoMinimoNome extends ClienteException {
   }
 }
 
-export class ErrorTamanhoMaximoNome extends ClienteException {
+class ErrorTamanhoMaximoNome extends ClienteException {
   constructor(
     message: string = "Cliente não pode possuir nome maior que 50 caracteres"
   ) {
@@ -28,7 +28,7 @@ export class ErrorTamanhoMaximoNome extends ClienteException {
   }
 }
 
-export class ErrorCPFinvalido extends ClienteException {
+class ErrorCPFinvalido extends ClienteException {
   constructor(message: string = "CPF inválido") {
     super(message);
     this.message = message;
@@ -36,7 +36,7 @@ export class ErrorCPFinvalido extends ClienteException {
   }
 }
 
-export class ErrorTelefoneInvalido extends ClienteException {
+class ErrorTelefoneInvalido extends ClienteException {
   constructor(message: string = "Telefone inválido") {
     super(message);
     this.message = message;
@@ -44,7 +44,7 @@ export class ErrorTelefoneInvalido extends ClienteException {
   }
 }
 
-export class ErrorIdadeInvalida extends ClienteException {
+class ErrorIdadeInvalida extends ClienteException {
   constructor(message: string = "Idade inválida") {
     super(message);
     this.message = message;
@@ -52,10 +52,19 @@ export class ErrorIdadeInvalida extends ClienteException {
   }
 }
 
-export class EnderecoInvalido extends ClienteException {
+class EnderecoInvalido extends ClienteException {
   constructor(message: string = "Endereço inválido") {
     super(message);
     this.message = message;
     this.name = "EnderecoInvalido";
   }
+}
+
+export const ClienteExceptions = {
+  EnderecoInvalido,
+  ErrorCPFinvalido,
+  ErrorIdadeInvalida,
+  ErrorTamanhoMaximoNome,
+  ErrorTamanhoMinimoNome,
+  ErrorTelefoneInvalido,
 }

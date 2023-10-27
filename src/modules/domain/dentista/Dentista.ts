@@ -1,6 +1,6 @@
 import { ErrorTamanhoMinimoNome } from "../cliente/cliente.exception";
 import { CFOIDinvalido } from "./dentista.exception";
-import { IDentista } from "./iDentista";
+import { IDentista } from "./dentista.interface";
 
 export class Dentista implements IDentista {
   private _nomeDentista: string;

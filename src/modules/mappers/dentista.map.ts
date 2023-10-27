@@ -1,5 +1,5 @@
 import { Dentista } from "@modules/domain/dentista/dentista";
-import { IDentista } from "@modules/domain/dentista/iDentista";
+import { IDentista } from "@modules/domain/dentista/dentista.interface";
 
 export class DentistaDTO {
   public static dentistaDTO(dentista: Dentista): IDentista {

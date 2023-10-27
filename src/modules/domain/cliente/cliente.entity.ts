@@ -1,13 +1,6 @@
 import { Consulta } from "@shared/consulta";
-import { ICliente } from "./iCliente";
-import {
-  EnderecoInvalido,
-  ErrorCPFinvalido,
-  ErrorIdadeInvalida,
-  ErrorTamanhoMaximoNome,
-  ErrorTamanhoMinimoNome,
-  ErrorTelefoneInvalido,
-} from "./cliente.exception";
+import { ICliente } from "./cliente.interface";
+import {ClienteExceptions} from "./cliente.exception";
 import { Endereco } from "../endereco/endereco.entity";
 
 export class Cliente implements ICliente {
@@ -19,55 +12,59 @@ export class Cliente implements ICliente {
   private _telefone: string;
   private _enderecos: Endereco[];
 
+
+  public static TAMANHO_MAXIMO_NOME = 50;
+  public static TAMANHO_MINIMO_NOME = 3;
+
   public get nome(): string {
     return this._nome;
   }
-  private set nome(value: string) {
-    if (value.trim().length < 3) {
-      throw new ErrorTamanhoMinimoNome();
+  private set nome(nome: string) {
+    if (nome.trim().length < Cliente.TAMANHO_MAXIMO_NOME) {
+      throw new ClienteExceptions.ErrorTamanhoMinimoNome();
     }
 
-    if (value.trim().length > 50) {
-      throw new ErrorTamanhoMaximoNome();
+    if (nome.trim().length > Cliente.TAMANHO_MINIMO_NOME) {
+      throw new ClienteExceptions.ErrorTamanhoMaximoNome();
     }
 
-    this._nome = value;
+    this._nome = nome;
   }
 
   public get idade(): number {
     return this._idade;
   }
-  private set idade(value: number) {
-    if (value <= 0) {
-      throw new ErrorIdadeInvalida();
+  private set idade(idade: number) {
+    if (idade <= 0) {
+      throw new ClienteExceptions.ErrorIdadeInvalida();
     }
-    this._idade = value;
+    this._idade = idade;
   }
 
   public get CPF(): string {
     return this._CPF;
   }
-  private set CPF(value: string) {
+  private set CPF(CPF: string) {
     const regexp: RegExp = /^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$/;
-    if (!regexp.test(value)) {
-      throw new ErrorCPFinvalido();
+    if (!regexp.test(CPF)) {
+      throw new ClienteExceptions.ErrorCPFinvalido();
     }
-    this._CPF = value;
+    this._CPF = CPF;
   }
 
   public get CPFresponsavel(): string | undefined {
     return this._CPFresponsavel;
   }
-  private set CPFresponsavel(value: string | undefined) {
+  private set CPFresponsavel(CPF: string | undefined) {
     const regexp: RegExp = /^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$/;
 
-    if (value?.length) {
-      if (!regexp.test(value)) {
-        throw new ErrorCPFinvalido();
+    if (CPF?.length) {
+      if (!regexp.test(CPF)) {
+        throw new ClienteExceptions.ErrorCPFinvalido();
       }
-      this._CPFresponsavel = value;
+      this._CPFresponsavel = CPF;
     }
-    this._CPFresponsavel = value;
+    this._CPFresponsavel = CPF;
   }
 
   public get consulta(): Consulta[] {
@@ -82,7 +79,7 @@ export class Cliente implements ICliente {
   }
   private set telefone(value: string) {
     if (value.length !== 11) {
-      throw new ErrorTelefoneInvalido();
+      throw new ClienteExceptions.ErrorTelefoneInvalido();
     }
     this._telefone = value;
   }
@@ -92,17 +89,16 @@ export class Cliente implements ICliente {
   }
   private set enderecos(value: Endereco[]) {
     if (value.length < 1) {
-      throw new EnderecoInvalido();
+      throw new ClienteExceptions.EnderecoInvalido();
     }
     if (value.length > 3) {
-      throw new EnderecoInvalido();
+      throw new ClienteExceptions.EnderecoInvalido();
     }
     this._enderecos = value;
   }
 
   private constructor(props: ICliente) {
-    let { nome, idade, CPF, consulta, telefone, CPFresponsavel, enderecos } =
-      props;
+    let { nome, idade, CPF, consulta, telefone, CPFresponsavel, enderecos } = props;
     this.nome = nome;
     this.idade = idade;
     this.CPF = CPF;
@@ -113,16 +109,6 @@ export class Cliente implements ICliente {
   }
 
   public static createCliente(props: ICliente): Cliente {
-    let { nome, idade, CPF, CPFresponsavel, consulta, telefone, enderecos } =
-      props;
-    return new Cliente({
-      nome,
-      idade,
-      CPF,
-      consulta,
-      telefone,
-      CPFresponsavel,
-      enderecos,
-    });
+    return new Cliente(props);
   }
 }

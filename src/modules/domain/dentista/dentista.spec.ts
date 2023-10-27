@@ -1,8 +1,8 @@
 import { describe, test, beforeAll, expect } from "vitest";
 import { faker } from "@faker-js/faker";
-import { createDentistaProps } from "./iDentista";
-import { Dentista } from "./dentista";
-import { ErrorTamanhoMinimoNome } from "../cliente/cliente.exception";
+import { createDentistaProps } from "./dentista.interface";
+import { Dentista } from "./Dentista";
+import { ClienteExceptions } from "../cliente/cliente.exception";
 import { CFOIDinvalido } from "./dentista.exception";
 
 let nomeValido: string;
@@ -38,7 +38,7 @@ describe("testa o objeto dentista", () => {
       cirurgiao: cirurgiao,
     };
     expect(() => Dentista.createDentista(dentistaNomeInvalido)).toThrowError(
-      ErrorTamanhoMinimoNome
+      ClienteExceptions.ErrorTamanhoMinimoNome
     );
   });
 
